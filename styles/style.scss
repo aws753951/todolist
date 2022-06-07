@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// 讓點到勾勾或垃圾桶時，不會因為勾勾跟button有距離而點錯，元素永远不会成为鼠标事件的target
+i {
+  pointer-events: none;
+}
+
+//https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient
+body {
+  background: linear-gradient(90deg, rgb(84, 130, 255), rgb(100, 255, 134));
+}
+
+// 先讓header這個tag內，佔據視窗有一定的高度
+header {
+  height: 20vh;
+  display: flex;
+  // 在這個header框框(20vh)內的東西，橫向及縱向擺放位置
+  justify-content: center;
+  align-items: center;
+  h1 {
+    color: white;
+    font-size: 3rem;
+  }
+}
+
+form {
+  // 調整畫面位置必備三要素，flex / center / center
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // 調整input & button的大小
+  input,
+  button {
+    border: none;
+    // 裡面的字距離外面框框
+    padding: 0.25rem 0.5rem;
+    font-size: 1.75rem;
+    // 避免兩個框框連在一起
+    margin: 0.1rem;
+  }
+  // tag[type="..."] 即可針對該type進行捕捉 *******************
+  input[type="number"] {
+    width: 50px;
+    text-align: center;
+  }
+  // 消除上下的箭頭 https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp 直接複製，於form內貼上
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  // 消除上下的箭頭 https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp 直接複製，於form內貼上
+
+  button {
+    //   小手手
+    cursor: pointer;
+    background-color: rgb(11, 146, 11);
+    color: white;
+  }
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div.todo {
+    width: 40vw;
+    display: flex;
+    //  ????
+    align-items: center;
+    justify-content: center;
+    // margin寫在母位置，子位置有多個東西可視為整個框框，不會讓margin變醜
+    margin: 0.2rem 0rem;
+    // 呼應done class
+    transition: 1s;
+    p {
+      background-color: white;
+      color: black;
+      padding: 0.25rem 0.5rem;
+      font-size: 1.75rem;
+    }
+
+    // 各自佔據div的寬度
+    p.todo-text {
+      width: 40%;
+    }
+    p.todo-date {
+      width: 20%;
+      text-align: center;
+    }
+
+    button {
+      // 可參考 p tag 的css設定，大小一致才好看
+      padding: 0.4rem 0.5rem;
+      font-size: 1.75rem;
+      border: none;
+      cursor: pointer;
+      color: white;
+    }
+
+    button.complete {
+      background-color: green;
+    }
+    button.trash {
+      background-color: red;
+    }
+  }
+}
+
+// 設定動畫的css
+@keyframes scaleUp {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+  text-decoration-thickness: 0.2rem;
+  // 設定完後於div內設定漸進效果
+}
+
+@keyframes scaleDown {
+  to {
+    transform: scale(0);
+  }
+}
+
+div.sort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0rem;
+  button {
+    padding: 0.4rem 0.5rem;
+    font-size: 1.75rem;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(11, 146, 11);
+    color: white;
+  }
+}
